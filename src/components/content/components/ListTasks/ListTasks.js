@@ -2,14 +2,13 @@ import React from "react";
 import Task from "./Task";
 import { Container, useTheme } from "@mui/material";
 
-function ListTasks() {
+function ListTasks({tasks,setSeletedTasks}) {
   const theme = useTheme();
   return (
     <Container
       style={{
         padding: 0,
-        backgroundColor: "#EFE14B",
-        // overflow:"scroll"
+        // backgroundColor: "#EFE14B",
       }}
       sx={{
         width: "40rem",
@@ -19,7 +18,7 @@ function ListTasks() {
         },
       }}
     >
-      <Task />
+      <Task setSeletedTasks={setSeletedTasks} tasks={tasks} />
     </Container>
   );
 }

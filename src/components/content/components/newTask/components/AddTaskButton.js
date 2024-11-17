@@ -1,10 +1,10 @@
 import React from "react";
 import FloatingActionButtons from "../../../../reusables/FloatingButton";
 
-function AddTaskButton({ onClick }) {
+function AddTaskButton({ onClick, type }) {
   return (
     <div onClick={onClick}>
-      <FloatingActionButtons />
+      <FloatingActionButtons  type={type} />
     </div>
   );
 }

@@ -5,7 +5,14 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 function TickBox({ checked, onChange }) {
   return (
-    <Checkbox {...label} size="small" checked={checked} onChange={onChange} />
+    <Checkbox
+      {...label}
+      size="small"
+      checked={checked}
+      onChange={(e) => {
+        onChange(e);
+      }}
+    />
   );
 }
 

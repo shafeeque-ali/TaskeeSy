@@ -5,32 +5,32 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-function BasicSelect({label,value}) {
-  const [age, setAge] = React.useState("");
-
+function SelectStatus({ filter, setFilter }) {
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setFilter(event.target.value);
+    console.log(event.target.value);
   };
 
   return (
-    <Box sx={{minWidth:"6rem"}} >
+    <Box sx={{ minWidth: "6rem" }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Status</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
+          value={filter}
           label="Status"
           onChange={handleChange}
-        //   sx={{height:"3rem"}}
+          //   sx={{height:"3rem"}}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={"all"}>All</MenuItem>
+          <MenuItem value={"pending"}>Pending</MenuItem>
+          <MenuItem value={"in-progress"}>In Progress</MenuItem>
+          <MenuItem value={"completed"}>Completed</MenuItem>
         </Select>
       </FormControl>
     </Box>
   );
 }
 
-export default BasicSelect;
+export default SelectStatus;

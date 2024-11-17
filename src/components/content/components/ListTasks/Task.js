@@ -1,27 +1,16 @@
 import React from "react";
 import AccordionUsage from "../../../reusables/Accordion";
 
-function Task() {
+function Task({ tasks = [], setSeletedTasks }) {
   return (
     <>
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-        <AccordionUsage header={"read books"} description={"loresjadfhfujsdi isdjfoijisdjnfjiewhfinmf"} />
-       
+      {tasks.map((task, index) => (
+        <AccordionUsage
+          key={task.title + index}
+          setSeletedTasks={setSeletedTasks}
+          task={task}
+        />
+      ))}
     </>
   );
 }

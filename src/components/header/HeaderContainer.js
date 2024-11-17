@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material";
 import React from "react";
-import BasicSelect from "../reusables/Select";
+import SelectStatus from "./SelectStatus";
 
-function HeaderContainer() {
+function HeaderContainer({ filter, setFilter }) {
   return (
     <div
       style={{
@@ -14,9 +14,7 @@ function HeaderContainer() {
       <Typography variant="h3" component="h1">
         TASKeeSY
       </Typography>
-      {/* <div style={{backgroundColor:"red"}}> */}
-        <BasicSelect />
-      {/* </div> */}
+      <SelectStatus filter={filter} setFilter={setFilter} />
     </div>
   );
 }
