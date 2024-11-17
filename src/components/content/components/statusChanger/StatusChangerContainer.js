@@ -2,7 +2,7 @@ import { Paper } from "@mui/material";
 import React from "react";
 import VerticalToggleButtons from "../../../reusables/ToggleButtonGroup";
 
-function StatusChangerContainer({ setTasks, seletedTasks }) {
+function StatusChangerContainer({ setTasks, tasks }) {
 
   const stausArr = [
     {
@@ -29,7 +29,7 @@ function StatusChangerContainer({ setTasks, seletedTasks }) {
     <Paper elevation={5}>
       <VerticalToggleButtons
         setTasks={setTasks}
-        seletedTasks={seletedTasks}
+        tasks={tasks}
         array={stausArr}
       />
     </Paper>

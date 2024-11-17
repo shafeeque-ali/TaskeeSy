@@ -2,7 +2,7 @@ import React from "react";
 import Task from "./Task";
 import { Container, useTheme } from "@mui/material";
 
-function ListTasks({tasks,setSeletedTasks}) {
+function ListTasks({tasks,setTasks}) {
   const theme = useTheme();
   return (
     <Container
@@ -18,7 +18,7 @@ function ListTasks({tasks,setSeletedTasks}) {
         },
       }}
     >
-      <Task setSeletedTasks={setSeletedTasks} tasks={tasks} />
+      <Task setTasks={setTasks} tasks={tasks} />
     </Container>
   );
 }

@@ -1,13 +1,13 @@
 import React from "react";
 import AccordionUsage from "../../../reusables/Accordion";
 
-function Task({ tasks = [], setSeletedTasks }) {
+function Task({ tasks = [], setTasks }) {
   return (
     <>
       {tasks.map((task, index) => (
         <AccordionUsage
           key={task.title + index}
-          setSeletedTasks={setSeletedTasks}
+          setTasks={setTasks}
           task={task}
         />
       ))}

@@ -4,23 +4,21 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { changeTaskStatus } from "../../api/taskApi";
 
-function VerticalToggleButtons({
-  array = [],
-  seletedTasks = [],
-  setTasks = [],
-}) {
+function VerticalToggleButtons({ array = [], tasks = [], setTasks = [] }) {
   const [view, setView] = React.useState("module");
 
   const handleChange = (event, nextView) => {
     setView(nextView);
   };
 
+  const selectedTaskees = () => tasks.filter((e) => e.isSelected === true);
+
   const handleToggClick = async (el) => {
-    const data = await changeStatus(seletedTasks[0].id, el.status);
+    const data = await changeStatus(selectedTaskees()[0].id, el.status);
     setTasks((prev) => {
       for (let i = 0; i < prev.length; i++) {
         const e = prev[i];
-        if (e.id === seletedTasks[0].id) {
+        if (e.id === selectedTaskees()[0].id) {
           e.status = data.status;
         }
       }
@@ -41,10 +39,10 @@ function VerticalToggleButtons({
   }
 
   const activeStatus = () => {
-    if (seletedTasks.length > 1) return "none";
-    return seletedTasks[0]
-      ? seletedTasks[0].status
-        ? seletedTasks[0].status
+    if (selectedTaskees().length > 1) return "none";
+    return selectedTaskees()[0]
+      ? selectedTaskees()[0].status
+        ? selectedTaskees()[0].status
         : "none"
       : "none";
   };
@@ -56,7 +54,9 @@ function VerticalToggleButtons({
       exclusive
       onChange={handleChange}
       disabled={
-        seletedTasks.length === 0 || seletedTasks.length > 1 ? true : false
+        selectedTaskees().length === 0 || selectedTaskees().length > 1
+          ? true
+          : false
       }
     >
       {array.map((el) => {

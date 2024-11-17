@@ -5,10 +5,10 @@ import AddTaskButton from "./components/AddTaskButton";
 function NewTaskContainer({
   setTasks,
   floatingButtonType,
-  seletedTasks,
-  setSeletedTasks,
+  tasks,
 }) {
   const [isOpenNew, setIsOpenNew] = useState(false);
+
 
   const handleAddButtonClick = () => {
     setIsOpenNew(true);
@@ -20,8 +20,7 @@ function NewTaskContainer({
       >
         {isOpenNew && (
           <NewTask
-            setSeletedTasks={setSeletedTasks}
-            seletedTasks={seletedTasks}
+          tasks={tasks}
             setIsOpenNew={setIsOpenNew}
             setTasks={setTasks}
           />

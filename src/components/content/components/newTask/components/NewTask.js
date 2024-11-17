@@ -3,15 +3,13 @@ import { Box, Button, Paper, Stack, TextField } from "@mui/material";
 import { addTask, updateTask } from "../../../../../api/taskApi";
 import CloseIcon from "@mui/icons-material/Close";
 
-function NewTask({
-  setTasks,
-  setIsOpenNew,
-  seletedTasks = [],
-  setSeletedTasks,
-}) {
+function NewTask({ setTasks, setIsOpenNew, tasks }) {
+
+  const selectedTaskees = () => tasks.filter((e) => e.isSelected === true);
+
   let intitalFormdata =
-    seletedTasks.length === 1
-      ? seletedTasks[0]
+    selectedTaskees().length === 1
+      ? selectedTaskees()[0]
       : { title: "", description: "" };
   const [formData, setFormData] = useState(intitalFormdata);
   const [error, setError] = useState({ title: false });
@@ -25,7 +23,7 @@ function NewTask({
   };
 
   const handleSubmit = async (e) => {
-    const isUpdatedMode = seletedTasks[0] ? true : false;
+    const isUpdatedMode = selectedTaskees()[0] ? true : false;
     e.preventDefault();
     if (!formData.title.trim()) {
       setError((prev) => ({ ...prev, title: true }));
@@ -33,7 +31,7 @@ function NewTask({
     }
 
     const uploadedData = isUpdatedMode
-      ? await editTasks(seletedTasks[0].id, formData)
+      ? await editTasks(selectedTaskees()[0].id, formData)
       : await uploadTasks(formData);
     console.log("Form Submitted", uploadedData);
 
@@ -146,7 +144,7 @@ function NewTask({
       />
 
       <Button type="submit" variant="contained" color="primary">
-        {seletedTasks[0] ? "Update" : "Add"}
+        {selectedTaskees()[0] ? "Update" : "Add"}
       </Button>
     </Box>
   );

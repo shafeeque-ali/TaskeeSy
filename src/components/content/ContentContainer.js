@@ -9,38 +9,11 @@ function ContentContainer({ filter }) {
   const [tasks, setTasks] = useState([]);
   // const [seletedTasks, setSeletedTasks] = useState([]);
 
+  const selectedTaskees = () => tasks.filter((e) => e.isSelected === true);
+
   useEffect(() => {
     fetchTasks();
   }, [filter]);
-
-  const handleSelectedTask = (checked, task) => {
-    console.log({ checked, task });
-
-    let arr = [];
-    for (let i = 0; i < tasks.length; i++) {
-      const e = tasks[i];
-      if (e.id === task.id) {
-        e.isSelected = checked;
-      }
-      arr.push(e);
-    }
-    setTasks(arr);
-
-    // if (checked) {
-    //   setSeletedTasks((preves) => [task, ...preves]);
-    // } else {
-    //   const arr = [];
-    //   for (let i = 0; i < seletedTasks.length; i++) {
-    //     const element = seletedTasks[i];
-    //     if (element.id !== task.id) {
-    //       arr.push(element);
-    //     }
-    //   }
-    //   setSeletedTasks(arr);
-    // }
-  };
-
-  // const seletedTasks = () => tasks.filter((e) => e.isSelected === true);
 
   async function fetchTasks() {
     try {
@@ -56,7 +29,7 @@ function ContentContainer({ filter }) {
       for (let i = 0; i < response.data.length; i++) {
         const e = response.data[i];
         e.isSelected = false;
-        arr.push(arr);
+        arr.push(e);
       }
       setTasks(arr);
     } catch (err) {
@@ -83,7 +56,7 @@ function ContentContainer({ filter }) {
           scrollbarWidth: "none",
         }}
       >
-        <ListTasks setSeletedTasks={handleSelectedTask} tasks={tasks} />
+        <ListTasks setTasks={setTasks} tasks={tasks} />
       </div>
       <div
         style={{
@@ -92,10 +65,7 @@ function ContentContainer({ filter }) {
           left: "1rem",
         }}
       >
-        <StatusChangerContainer
-          setTasks={setTasks}
-          seletedTasks={seletedTasks}
-        />
+        <StatusChangerContainer setTasks={setTasks} tasks={tasks} />
       </div>
       <div
         style={{
@@ -104,11 +74,7 @@ function ContentContainer({ filter }) {
           right: "1rem",
         }}
       >
-        <DeleteBox
-          setSeletedTasks={setSeletedTasks}
-          setTasks={setTasks}
-          seletedTasks={seletedTasks}
-        />
+        <DeleteBox tasks={tasks} setTasks={setTasks} />
       </div>
       <div
         style={{
@@ -119,15 +85,14 @@ function ContentContainer({ filter }) {
       >
         <NewTaskContainer
           floatingButtonType={
-            seletedTasks().length === 0
+            selectedTaskees().length === 0
               ? "add"
-              : seletedTasks().length === 1
+              : selectedTaskees().length === 1
               ? "edit"
-              : seletedTasks().length < 1 && "disabled"
+              : selectedTaskees().length < 1 && "disabled"
           }
           setTasks={setTasks}
-          seletedTasks={seletedTasks}
-          setSeletedTasks={setSeletedTasks}
+          tasks={tasks}
         />
       </div>
       {/* <FloatingActionButtons /> */}
