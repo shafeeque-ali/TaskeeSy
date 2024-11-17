@@ -20,7 +20,7 @@ function VerticalToggleButtons() {
       onChange={handleChange}
     >
       <ToggleButton value="module" aria-label="module">
-        <ViewModuleIcon />
+        <ViewModuleIcon color="primary" />
       </ToggleButton>
       <ToggleButton value="module" aria-label="module">
         <ViewModuleIcon />

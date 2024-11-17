@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ListTasks from "./components/ListTasks/ListTasks";
 import NewTaskContainer from "./components/newTask/NewTaskContainer";
-import FloatingActionButtons from "../reusables/FloatingButton";
 import ChangerContainer from "./components/statusChanger/ChangerContainer";
 import DeleteBox from "../../assets/icons/DeleteBox";
+import { getAllTaks } from "../../api/taskApi";
 
 function ContentContainer() {
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  async function fetchTasks() {
+    try {
+      const response = await getAllTaks();
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+      const data = await response;
+      console.log({data});
+      
+      setTasks(data);
+    } catch (err) {
+      // setError(err.message);
+    }
+  }
+
   return (
     <div
       style={{
@@ -15,10 +36,11 @@ function ContentContainer() {
         position: "relative",
       }}
     >
+      {console.log({ tasks })}
       <div
         style={{
           flexGrow: 1,
-          backgroundColor: "#EF7E4B",
+          // backgroundColor: "#EF7E4B",
           // backgroundColor: "turquoise",
           display: "flex",
           justifyContent: "center",
